@@ -4,8 +4,8 @@ from .models import todoitem
 
 # Create your views here.
 
-def about_page(request):
-    return render(request, 'todo/about.html')
+def welcome(request):
+    return render(request,'todo/welcome.html')
 
 def home(request):
     if request.method == "POST":
@@ -16,6 +16,9 @@ def home(request):
         pass
     all_todo_items = todoitem.objects.all()
     return render(request, 'todo/home.html', {"all_items": all_todo_items})
+
+def about_page(request):
+    return render(request, 'todo/about.html')
 
 def deletetodo(request, todo_id):
     item_to_delete = todoitem.objects.get(id=todo_id)
