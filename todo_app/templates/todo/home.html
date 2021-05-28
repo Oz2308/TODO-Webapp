@@ -8,10 +8,10 @@
 <body>
     <br></br>
 
-    <h2>Add TO-DO Items Here:</h2>
-    <form action="/home/" method="post">{% csrf_token %}
-        <input  type="text" name="content" class="form-group mb-2" placeholder="Enter TO-DO Item"/>
-        <button type="submit" class="btn btn-primary mb-2">Add</button>
+    <h2 style="text-align:center">Add TO-DO Items Here:</h2>
+    <form style="text-align:center" action="/home/" method="post">{% csrf_token %}
+        <input  type="text" name="content" placeholder="Enter TO-DO Item"/>
+        <button type="submit" class="btn btn-primary">Add</button>
     </form>
     
     <br></br>
@@ -19,14 +19,17 @@
     <h2>TODO:</h2>
     <ul class="list-group">
         {% for todoitem in all_items %}
-        <li class="list-group-item bg-transparent" style="color:white">{{ todoitem.item }}
+        <li class="list-group-item bg-transparent rounded border border-dark border-2" style="color:white">{{ todoitem.item }}
             <br></br>
             <em>Posted on: {{ todoitem.date_posted }}</em>
-            <form action="/deletetodo/{{todoitem.id}}/" 
-            style="display: inline;"
-            method="post">{% csrf_token %}
-                <input  type="submit" value="Delete"/> 
-            </form>
+
+            <div>
+                <form action="/deletetodo/{{todoitem.id}}/" 
+                    style="display: inline;"
+                    method="post">{% csrf_token %}
+                    <input type="submit" value="Delete"/> 
+                </form>
+            </div>
         </li> 
         {% endfor %}
     </ul>
