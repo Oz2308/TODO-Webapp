@@ -10,8 +10,8 @@
 
     <h2 style="text-align:center">Add TO-DO Items Here:</h2>
     <form style="text-align:center" action="/home/" method="post">{% csrf_token %}
-        <input  type="text" name="content" placeholder="Enter TO-DO Item"/>
-        <button type="submit" class="btn btn-primary">Add</button>
+        <input style="height:45px;width:600px" type="text" name="content" placeholder="Enter TO-DO Item"/>
+        <button style="height:45px;width:75px" type="submit" class="btn btn-success">Add</button>
     </form>
     
     <br></br>
@@ -19,7 +19,7 @@
     <h2>TODO:</h2>
     <ul class="list-group">
         {% for todoitem in all_items %}
-        <li class="list-group-item bg-transparent rounded border border-dark border-2" style="color:white">{{ todoitem.item }}
+        <li class="list-group-item bg-transparent border border-dark border-2" style="color:white">{{ todoitem.item }}
             <br></br>
             <em>Posted on: {{ todoitem.date_posted }}</em>
 
@@ -27,7 +27,7 @@
                 <form action="/deletetodo/{{todoitem.id}}/" 
                     style="display: inline;"
                     method="post">{% csrf_token %}
-                    <input type="submit" value="Delete"/> 
+                    <input type="submit" value="Delete" class="btn btn-danger" style="float: right;"/> 
                 </form>
             </div>
         </li> 
