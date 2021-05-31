@@ -10,7 +10,7 @@
 
     <h2 style="text-align:center">Add TO-DO Items Here:</h2>
     <form style="text-align:center" action="/home/" method="post">{% csrf_token %}
-        <input style="height:45px;width:600px" type="text" name="content" placeholder="Enter TO-DO Item"/>
+        <input style="height:45px;width:600px" type="text" name="content" placeholder="Enter TO-DO Item" required/>
         <button style="height:45px;width:75px" type="submit" class="btn btn-success">Add</button>
     </form>
     
@@ -19,16 +19,36 @@
     <h2>TODO:</h2>
     <ul class="list-group">
         {% for todoitem in all_items %}
-        <li class="list-group-item bg-transparent border border-dark border-2" style="color:white">{{ todoitem.item }}
+        <li class="list-group-item bg-transparent border border-dark border-2" style="color:white; font-size:20px">{{ todoitem.item }}
             <br></br>
-            <em>Posted on: {{ todoitem.date_posted }}</em>
+            <em style="font-size:15px">Posted on: {{ todoitem.date_posted }}</em>
 
-            <div>
-                <form action="/deletetodo/{{todoitem.id}}/" 
-                    style="display: inline;"
-                    method="post">{% csrf_token %}
-                    <input type="submit" value="Delete" class="btn btn-danger" style="float: right;"/> 
-                </form>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-danger" style="float: right;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                Delete TO-DO Item
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel" style="color:black">Are you sure you want to delete: "{{ todoitem.item }}"?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" style="color:black"> 
+                    This will delete the TO-DO item forever.
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <form action="/deletetodo/{{todoitem.id}}/" 
+                        style="display: inline;"
+                        method="post">{% csrf_token %}
+                        <input type="submit" value="Delete" class="btn btn-danger"/> 
+                    </form>
+                    </div>
+                </div>
+                </div>
             </div>
         </li> 
         {% endfor %}
