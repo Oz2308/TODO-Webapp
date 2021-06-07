@@ -70,16 +70,16 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                         
-                        <form action="/home/{{todoitem.id}}/" 
+                        <form action="/updatetodo/{{todoitem.id}}/"
                             style="display: inline;"
-                            method="post">{% csrf_token %}
-                            <input type="submit" value="Update" class="btn btn-success"/> 
+                            method="POST">{% csrf_token %}
+                            <input type="submit" name="UpdatedContent" value="Update" class="btn btn-success"/> 
                         </form>
                     </div>
                 </div>
                 </div>
             </div>
-            
+           
         </li> 
         {% endfor %}
     </ul>
