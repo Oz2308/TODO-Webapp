@@ -21,6 +21,14 @@ def deletetodo(request, todo_id):
     item_to_delete = todoitem.objects.get(id=todo_id)
     item_to_delete.delete()
     return HttpResponseRedirect("/home/")
+
+def updatetodo(request, todo_id):
+    if request.method == "POST":
+        currentitem = todoitem.objects.get(id=todo_id)
+        currentitem.item = request.POST["UpdatedItem"]
+        print(request.POST)
+        currentitem.save()
+        return HttpResponseRedirect("/home/")
     
 def about_page(request):
     return render(request, 'todo/about.html')

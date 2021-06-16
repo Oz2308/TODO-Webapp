@@ -63,18 +63,20 @@
                     <div class="modal-header">
                     <h5 class="modal-title" id="myupdatelabel" style="color:black">Do you want to update: "{{ todoitem.item }}"?</h5>
                     </div>
+
                     <div class="modal-body" style="color:black"> 
                         <label for="exampleInputEmail1">Update your TO-DO item</label>
-                        <input type="text" class="form-control" id="UpdatedItem">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        
                         <form action="/updatetodo/{{todoitem.id}}/"
                             style="display: inline;"
                             method="POST">{% csrf_token %}
-                            <input type="submit" name="UpdatedContent" value="Update" class="btn btn-success"/> 
+                            <input type="text" class="form-control" name="UpdatedItem">
                         </form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <input type="submit" value="Update" class="btn btn-success"/> 
+                        
                     </div>
                 </div>
                 </div>
