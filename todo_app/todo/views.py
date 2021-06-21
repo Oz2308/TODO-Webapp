@@ -26,7 +26,6 @@ def updatetodo(request, todo_id):
     if request.method == "POST":
         currentitem = todoitem.objects.get(id=todo_id)
         currentitem.item = request.POST["UpdatedItem"]
-        print(request.POST)
         currentitem.save()
         return HttpResponseRedirect("/home/")
     
