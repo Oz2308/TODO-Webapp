@@ -1,4 +1,5 @@
 from django.test import TestCase
+from .models import todoitem
 
 # Create your tests here.
 
@@ -13,4 +14,9 @@ class test_urls(TestCase):
         
     def test_aboutpage(self):
         response_about = self.client.get("/about/")
-        self.assertEqual(response_about.status_code, 200)    
+        self.assertEqual(response_about.status_code, 200)
+
+class test_crud(TestCase):
+    def test_createtodo(self):
+        new_item = self.client.post("/home/", todoitem(item = "testing item"))
+        self.assertEqual(new_item.status_code, 302)
