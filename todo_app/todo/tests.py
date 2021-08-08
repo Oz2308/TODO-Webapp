@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import todoitem
+from .models import ToDoItem
 
 # Create your tests here.
 
@@ -17,7 +17,19 @@ class test_urls(TestCase):
         self.assertEqual(response_about.status_code, 200)
 
 class test_crud(TestCase):
-    # Find how to get TODO model as dict
+    def setUp(self):
+        ToDoItem.objects.create(item="shopping")
+
     def test_createtodo(self):
-        new_item = self.client.post("/home/", todoitem(item = "testing item"))
+        new_item = self.client.post("/home/", {"content":"TESTITEM"})
         self.assertEqual(new_item.status_code, 302)
+        todoitem = ToDoItem.objects.get(item = "TESTITEM")
+        self.assertTrue(todoitem)
+    
+    def test_deletetodo(self):
+        todoitem = ToDoItem.objects.get(item = "shopping")
+        todoid = todoitem.id
+        deleting = self.client.post(f"/deletetodo/{todoid}/")
+        with self.assertRaises(ToDoItem.DoesNotExist):
+            ToDoItem.objects.get(item = "shopping")
+            
