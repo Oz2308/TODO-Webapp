@@ -20,16 +20,24 @@ class test_crud(TestCase):
     def setUp(self):
         ToDoItem.objects.create(item="shopping")
 
-    def test_createtodo(self):
+    def testCreatetodo(self):
         new_item = self.client.post("/home/", {"content":"TESTITEM"})
         self.assertEqual(new_item.status_code, 302)
         todoitem = ToDoItem.objects.get(item = "TESTITEM")
         self.assertTrue(todoitem)
     
-    def test_deletetodo(self):
+    def testDeletetodo(self):
         todoitem = ToDoItem.objects.get(item = "shopping")
         todoid = todoitem.id
         deleting = self.client.post(f"/deletetodo/{todoid}/")
         with self.assertRaises(ToDoItem.DoesNotExist):
             ToDoItem.objects.get(item = "shopping")
-            
+
+    def testUpdateTodo(self):
+        todoitem = ToDoItem.objects.get(item = "shopping")
+        todoid = todoitem.id
+        updating = self.client.post(f"/updatetodo/{todoid}/", {"UpdatedItem":"WALKING"})
+        updated_item = ToDoItem.objects.get(item = "WALKING")
+        self.assertTrue(updated_item)
+        
+
