@@ -18,10 +18,10 @@ jobs:
         with:
           python-version: '>=3.9.1'
 
-      # - name: Install Python dependencies
-      #   uses: py-actions/py-dependency-install@v2
-      #   with:
-      #     path: "$GITHUB_WORKSPACE/requirements.txt"
+      - name: Install Python dependencies
+        uses: py-actions/py-dependency-install@v2
+        with:
+          path: "/home/runner/work/TODO-Webapp/TODO-Webapp/requirements.txt"
 
       - name: Run migrations
         run: python manage.py migrate
