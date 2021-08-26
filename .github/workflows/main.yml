@@ -19,7 +19,11 @@ jobs:
           python-version: '>=3.9.1'
 
       - name: Install requirements
-        run: pip install -r requirements.txt
+        run: |
+          echo $GITHUB_WORKSPACE
+          cd $GITHUB_WORKSPACE
+          pip install -r requirements.txt
+          
       - name: Run migrations
         run: python manage.py migrate
 
