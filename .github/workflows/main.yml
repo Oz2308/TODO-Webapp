@@ -1,3 +1,5 @@
+# Github workflow to run django tests
+
 name: CI Django App Tests
 
 on:
@@ -10,19 +12,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      name: Checkout repo & setup Python
-      uses: actions/checkout@v2
-      uses: actions/setup-python@v2
-      with:
-        python-version: '>=3.9.1'
+      - name: Checkout repo & setup Python
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '>=3.9.1'
 
-      name: Install requirements
-      run: pip install -r requirements.txt
-      name: Run migrations
-      run: python manage.py migrate
+      - name: Install requirements
+        run: pip install -r requirements.txt
+      - name: Run migrations
+        run: python manage.py migrate
 
-      name: Run Django Tests
-      run: python manage.py test
+      - name: Run Django Tests
+        run: python manage.py test
 
 
 
