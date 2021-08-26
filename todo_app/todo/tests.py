@@ -1,7 +1,6 @@
 from django.test import TestCase
 from .models import ToDoItem
 
-# Create your tests here.
 
 class test_urls(TestCase):
     def test_welcomepage(self):
