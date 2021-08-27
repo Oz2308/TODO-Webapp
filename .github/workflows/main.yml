@@ -24,7 +24,9 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run migrations
-        run: python ./todo_app/manage.py migrate
+        run: |
+          python ./todo_app/manage.py make migrations
+          python ./todo_app/manage.py migrate
 
       - name: Run Django Tests
         run: python ./todo_app/manage.py test
