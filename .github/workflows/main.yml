@@ -25,7 +25,7 @@ jobs:
 
       - name: Run migrations
         run: |
-          python ./todo_app/manage.py make migrations
+          python ./todo_app/manage.py makemigrations
           python ./todo_app/manage.py migrate
 
       - name: Run Django Tests
