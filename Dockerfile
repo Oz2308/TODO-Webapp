@@ -3,7 +3,7 @@ MAINTAINER Ossama
 
 ENV PYTHONUNBUFFERED 1
 
-COPY ./todo_app/requirements.txt /requirements.txt
+COPY ./requirements.txt /requirements.txt
 RUN pip install --upgrade pip
 RUN apk add --no-cache bash
 RUN pip install -r /requirements.txt
@@ -11,4 +11,3 @@ RUN pip install -r /requirements.txt
 RUN mkdir /app
 WORKDIR /app
 COPY ./todo_app /app
-
