@@ -20,12 +20,11 @@ jobs:
       - name: Docker build image
         run: docker build -t todoimage . -f Dockerfile
       - name: Docker build container
-        run: |
-          docker run -d -t --name todocontainer todoimage
-          docker exec todocontainer bash
+        run: docker run -d -t --name todocontainer todoimage
 
       - name: Run migrations & tests in docker
-        run: | 
+        run: |
+          docker exec todocontainer bash
           python manage.py makemigrations
           python manage.py migrate
           python manage.py test
