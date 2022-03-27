@@ -2,7 +2,9 @@
 
 name: CI Django App Tests
 
-on: push
+on:
+  push:
+    branches: [ main ]
 
 jobs:
   testing:
