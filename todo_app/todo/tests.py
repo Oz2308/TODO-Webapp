@@ -5,7 +5,7 @@ from .models import ToDoItem
 class TestUrls(TestCase):
     def test_welcomepage(self):
         response = self.client.get("")
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 6000)
     
     def test_homepage(self):
         response_home = self.client.get("/home/")
